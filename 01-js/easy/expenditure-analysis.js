@@ -6,7 +6,31 @@
 */
 
 function calculateTotalSpentByCategory(transactions) {
-  return [];
+  let totalSpendByCategory = [];
+
+  for (let i = 0; i < transactions.length; i++) {
+    let categoryExists = false;
+
+    // Check if category already exists in totalSpendByCategory
+    for (let j = 0; j < totalSpendByCategory.length; j++) {
+      if (totalSpendByCategory[j].category === transactions[i].category) {
+        categoryExists = true;
+        totalSpendByCategory[j].totalSpent += transactions[i].price;
+        break;
+      }
+    }
+
+    // If category does not exist, add it to the totalSpendByCategory array
+    if (!categoryExists) {
+      totalSpendByCategory.push({
+        category: transactions[i].category,
+        totalSpent: transactions[i].price,
+      });
+    }
+  }
+
+  return totalSpendByCategory;
 }
+
 
 module.exports = calculateTotalSpentByCategory;

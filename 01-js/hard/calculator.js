@@ -16,6 +16,47 @@
   Once you've implemented the logic, test your code by running
 */
 
-class Calculator {}
+class Calculator {
+  result = 0;
+  constructor(){
+    this.result;
+
+  }
+
+  add(x){
+    this.result += x;
+  }
+  subtract(x){
+    this.result -= x
+  }
+  multiply(x){
+    this.result *= x
+  }
+  divide(number) {
+    if (number == 0) {
+      throw new Error();
+    }
+    this.result = this.result/number;
+  }
+  clear(){
+    this.result = 0;
+  }
+
+  getResult(){
+    return this.result;
+  }
+
+  calculate(x){
+    x = x.replace('\/s\g','')
+    if(/[a-zA-Z]/.test(x)) throw new Error()
+    
+    try{
+      const solution = eval(x)
+      this.result = solution
+    }catch(error){
+      throw new Error("Invalid Expression");
+    }
+  }
+}
 
 module.exports = Calculator;
